@@ -5,6 +5,12 @@ output, bring your playing apps with you, and make the volume feel right.
 
 ![Sound Switcher in a wide terminal](docs/preview.png)
 
+| Compact layout | Command palette |
+| :---: | :---: |
+| <img src="docs/compact.png" alt="Sound Switcher adapting to a compact terminal with output selection and volume controls" width="360"> | <img src="docs/commands.png" alt="Sound Switcher's command palette with a typed output-switching command" width="700"> |
+
+Actual Kitty terminal screenshots, captured automatically in demo mode.
+
 - **A considered interface:** mint accents, clear selection and connection
   states, friendly device names, and a separate controls panel in wide windows.
 - **Comfortable at any zoom:** cards reflow into a compact list, controls move
@@ -158,7 +164,17 @@ python3 -m unittest discover -s tests -v
 
 # Render the real interface at wide, standard, and compact sizes to SVG.
 cargo run --example preview -- /tmp/sound-switcher-previews
+
+# Rebuild and capture the README screenshots in a hidden Kitty terminal.
+python3 scripts/screenshots.py
 ```
+
+Screenshot capture requires [Kitty 0.49+](https://sw.kovidgoyal.net/kitty/generated/rc/#screenshot),
+a working graphics session, and DejaVu Sans Mono (or Kitty's fallback monospace
+font). The script captures the running app's rendered pixels, waits for each
+screen to be ready, and closes its temporary terminals. It uses `--demo`, so
+your audio settings and microphone are untouched. Use `--output-dir PATH` to
+save the PNGs elsewhere, or `--binary PATH` to capture an already built binary.
 
 Rust tests cover audio parsing, command interpretation, device selection,
 Unicode, zoom boundaries, and overlays. Python integration tests launch the
